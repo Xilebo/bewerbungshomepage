@@ -1,14 +1,14 @@
 <?php
 
-	function generateTrTag($level, $class) {
+	function generateOpenTag($level, $class) {
 		if (($level < 0) && ($class == '')) {
-			$result = '<tr>';
+			$result = '<div>';
 		} elseif (($level >= 0) && ($class == '')) {
-			$result = '<tr class="expandable level' . $level . '">';
+			$result = '<div class="expandable level' . $level . '">';
 		} elseif (($level < 0) && ($class != '')) {
-			$result = '<tr class="' . $class . '">';
+			$result = '<div class="' . $class . '">';
 		} elseif (($level >= 0) && ($class != '')) {
-			$result = '<tr class="expandable level' . $level . ' ' . $class . '">';
+			$result = '<div class="expandable level' . $level . ' ' . $class . '">';
 		}
 		return $result;
 	}
@@ -16,19 +16,37 @@
 	function addLineToBody($line) {
 		global $html;
 
-		$trTag = generateTrTag($line['level'], $line['class']);
-		$html->addLineToBody($trTag);
+		$openTag = generateOpenTag($line['level'], $line['class']);
+		$html->addLineToBody($openTag);
 		$html->IncTabLevel();
 		$fieldcount = count($line) - 2;
 		for ($i = 0; $i < $fieldcount; $i++) {
-			$html->addLineToBody('<td>');
+			if ($i == 0) {
+			$html->addLineToBody("<h4>");
 			$html->IncTabLevel();
 			$html->addLineToBody($line[$i]);
 			$html->DecTabLevel();
-			$html->addLineToBody('</td>');
+			$html->addLineToBody("</h4>");
+			} elseif ($i == 1) {
+			$html->addLineToBody("<h5>");
+			$html->IncTabLevel();
+			$html->addLineToBody($line[$i]);
+			$html->DecTabLevel();
+			$html->addLineToBody("</h5>");
+			} elseif ($i == 2) {
+			$html->addLineToBody("<p>");
+			$html->IncTabLevel();
+			$html->addLineToBody($line[$i]);
+			$html->DecTabLevel();
+			$html->addLineToBody("</p>");
+			} else {
+			$html->IncTabLevel();
+			$html->addLineToBody($line[$i]);
+			$html->DecTabLevel();
+			}
 		}
 		$html->DecTabLevel();
-		$html->addLineToBody('</tr>');
+		$html->addLineToBody('</div>');
 	}
 
 	function addLineToHead($line) {
