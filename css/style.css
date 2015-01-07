@@ -1,0 +1,32 @@
+body
+{
+  padding: 30px;
+}
+.center-div
+{
+  margin: 0 auto;
+  width: 1000px;
+  height: auto;
+  background-color: #ccc;
+}
+.expandable
+{
+  width: 50%;
+  height: auto;
+  margin: 2px;
+  background-color: #ddd;
+  overflow:hidden;
+}
+h4
+{
+  display:inline;
+}
+h5
+{
+  display: inline;
+  margin:0 0 0 20px;
+}
+p
+{
+  margin:0 0 0 100px;
+}
