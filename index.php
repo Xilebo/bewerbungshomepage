@@ -8,7 +8,7 @@
 	$source = new source('bewerbung.csv');
 	$source->readFile();
 	$html->IncTabLevel();
-	$html->addLineToBody('<table>');
+	$html->addLineToBody('<div class="center-div">');
 
 	$html->IncTabLevel();
 	foreach ($source->data as $line) {
@@ -20,7 +20,7 @@
 	}
 	$html->DecTabLevel();
 
-	$html->addLineToBody('</table>');
+	$html->addLineToBody('</div>');
 	$html->DecTabLevel();
 	$html->printAll();
 ?>
