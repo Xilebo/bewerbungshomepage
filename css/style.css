@@ -11,22 +11,16 @@ body
 }
 .expandable
 {
-  width: 50%;
   height: auto;
   margin: 2px;
   background-color: #ddd;
   overflow:hidden;
 }
-h4
+.field0, .field1
 {
-  display:inline;
-}
-h5
-{
-  display: inline;
   margin:0 0 0 20px;
 }
-p
+.level1 .field1
 {
   margin:0 0 0 100px;
 }
