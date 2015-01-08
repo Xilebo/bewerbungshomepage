@@ -21,29 +21,11 @@
 		$html->IncTabLevel();
 		$fieldcount = count($line) - 2;
 		for ($i = 0; $i < $fieldcount; $i++) {
-			if ($i == 0) {
-				$html->addLineToBody("<h4>");
-				$html->IncTabLevel();
-				$html->addLineToBody($line[$i]);
-				$html->DecTabLevel();
-				$html->addLineToBody("</h4>");
-			} elseif ($i == 1) {
-				$html->addLineToBody("<h5>");
-				$html->IncTabLevel();
-				$html->addLineToBody($line[$i]);
-				$html->DecTabLevel();
-				$html->addLineToBody("</h5>");
-			} elseif ($i == 2) {
-				$html->addLineToBody("<p>");
-				$html->IncTabLevel();
-				$html->addLineToBody($line[$i]);
-				$html->DecTabLevel();
-				$html->addLineToBody("</p>");
-			} else {
-				$html->IncTabLevel();
-				$html->addLineToBody($line[$i]);
-				$html->DecTabLevel();
-			}
+			$html->addLineToBody('<span class="field' . $i . '">');
+			$html->IncTabLevel();
+			$html->addLineToBody($line[$i]);
+			$html->DecTabLevel();
+			$html->addLineToBody('</span>');
 		}
 		$html->DecTabLevel();
 		$html->addLineToBody('</div>');
