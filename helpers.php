@@ -4,11 +4,20 @@
 		if (($level < 0) && ($class == '')) {
 			$result = '<div>';
 		} elseif (($level >= 0) && ($class == '')) {
-			$result = '<div class="expandable level' . $level . '">';
+		    if ($level == 0) {
+				$result = '<div class="expandable level' . $level . '">';
+			} else {
+				$result = '<div class="level' . $level . '">';
+			}
 		} elseif (($level < 0) && ($class != '')) {
 			$result = '<div class="' . $class . '">';
 		} elseif (($level >= 0) && ($class != '')) {
-			$result = '<div class="expandable level' . $level . ' ' . $class . '">';
+			if ($level == 0) {
+				$result = '<div class="expandable level' . $level . ' '
+					. $class . '">';
+			} else {
+				$result = '<div class="level' . $level . ' ' . $class . '">';
+			}
 		}
 		return $result;
 	}
