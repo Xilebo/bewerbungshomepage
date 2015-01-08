@@ -12,10 +12,10 @@
 
 	$html->IncTabLevel();
 	foreach ($source->data as $line) {
-		if ($line['level'] >= -1){
-			addLineToBody($line);
-		} elseif ($line['level'] == -2) {
+		if ($line['level'] == 'head') {
 			addLineToHead($line);
+		} elseif ($line['level'] >= -1){
+			addLineToBody($line);
 		}
 	}
 	$html->DecTabLevel();
