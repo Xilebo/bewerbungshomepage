@@ -11,13 +11,7 @@
 	$html->addLineToBody('<div class="center-div">');
 
 	$html->IncTabLevel();
-	foreach ($source->data as $line) {
-		if ($line['level'] == 'head') {
-			addLineToHead($line);
-		} elseif ($line['level'] >= -1){
-			addLineToBody($line);
-		}
-	}
+	parseSource($source->data);
 	$html->DecTabLevel();
 
 	$html->addLineToBody('</div>');

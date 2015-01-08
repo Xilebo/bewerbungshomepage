@@ -42,4 +42,17 @@
 		$html->addLineToHead($newLine);
 	}
 
+	function parseSource($source, $nextLine = 0, $currentLevel = -1) {
+		foreach ($source as $line) {
+			if ($line['level'] == 'head') {
+				addLineToHead($line);
+			} elseif ($line['level'] < 0){
+				addLineToBody($line);
+			} else {
+				addLineToBody($line);
+			}
+		}
+
+	}
+
 ?>
