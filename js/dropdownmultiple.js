@@ -1,27 +1,27 @@
 $(document).ready(function(){
-  
+
   $(".expandable").each(function(){
     $(this).data('defaultheight', $(this).height());
-    $(this).data('state', false);
+    $(this).data('state', true);
   });
 
-$(".expandable").animate({
-         height: 20
-         }, 0 );
+	toggleExpansion(0);
 
-  $(".expandable").click(function() {
+  $(".expandable").click(toggleExpansion(1000));
+
+  function toggleExpansion($time) {
      defaultheight = $(this).data('defaultheight');
      state = $(this).data('state');
      if ( state ) {
-     
+
      $(this).animate({
          height: 20
-         }, 1000 );
+         }, $time );
      } else {
      $( this ).animate({
-         height: defaultheight 
-     }, 1000 );
+         height: defaultheight
+     }, $time );
      }
      $(this).data('state', !state);
-  });
+  }
 });
