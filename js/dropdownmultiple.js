@@ -5,23 +5,26 @@ $(document).ready(function(){
     $(this).data('state', true);
   });
 
-	toggleExpansion(0);
 
-  $(".expandable").click(toggleExpansion(1000));
 
-  function toggleExpansion($time) {
-     defaultheight = $(this).data('defaultheight');
-     state = $(this).data('state');
+  function toggleExpansion($object, $time) {
+     defaultheight = $object.data('defaultheight');
+     state = $object.data('state');
      if ( state ) {
 
-     $(this).animate({
+     $object.animate({
          height: 20
          }, $time );
      } else {
-     $( this ).animate({
+     $object.animate({
          height: defaultheight
      }, $time );
      }
-     $(this).data('state', !state);
+     $object.data('state', !state);
   }
+
+   toggleExpansion($(".expandable"), 0);
+  $(".expandable").click(function() {
+	toggleExpansion($(this),1000);
+  });
 });
