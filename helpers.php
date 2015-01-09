@@ -66,39 +66,47 @@
 		$html->addLineToHead($newLine);
 	}
 
-	function parseSource($source, $nextLine = 0, $currentLevel = 0) {
+	function parseSourceContinue($lineNumber, $lineCount, $lineLevel, $currentLevel) {
+		$result = false;
+
+		$lineCountReached = ($lineNumber >= $lineCount);
+
+		$validLevel = (($lineLevel >= $currentLevel)
+				|| ($lineLevel == 'head'));
+
+		$result = $validLevel && !$lineCountReached;
+		return $result;
+	}
+
+	function parseSource($source, $nextLine = 0, $currentLevel = -1) {
 		$lineCount = count($source);
-		for (
-				$i = $nextLine;
-				(
-					($i < $lineCount)
-					&& (
-						($source[$i]['level'] >= $currentLevel)
-						|| ($source[$i]['level'] == -1)
-						|| ($source[$i]['level'] == 'head')
-					)
-				);
-				$i++
-			) {
-			$line = $source[$i];
+		for ($lineNumber = $nextLine;
+				parseSourceContinue($lineNumber, $lineCount, $source[$lineNumber]['level'], $currentLevel);
+				$lineNumber++) {
+			$line = $source[$lineNumber];
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
 			} elseif ($line['level'] < 0) {
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				closeTag($line['level'], $line['class']);
+				if ($lineNumber + 1 < $lineCount) {
+					if ($source[$lineNumber + 1]['level'] > $currentLevel) {
+						parseSource($source, $lineNumber + 1, $currentLevel + 1);
+					}
+				}
 			} elseif ($line['level'] == $currentLevel) {
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
-				if ($i + 1 < $lineCount) {
-					if ($source[$i + 1]['level'] > $currentLevel) {
-						parseSource($source, $i + 1, $currentLevel + 1);
-					}
+				if (($lineNumber + 1 < $lineCount)
+						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
+					parseSource($source, $lineNumber + 1, $currentLevel + 1);
 				}
 				closeTag($line['level'], $line['class']);
 			}
 		}
 
+		return $lineNumber;
 	}
 
 ?>
