@@ -9,11 +9,24 @@ body
   height: auto;
   background-color: #fff;
 }
+.closed {
+  background-image:url(../icon/icon_arrow_right.png);
+  background-size: 10px 10px;
+  background-position: 0px 5px;
+  background-repeat:no-repeat;
+}
+.open {
+  background-image:url(../icon/icon_arrow_down.png);
+  background-size: 10px 10px;
+  background-position: 0px 4px;
+  background-repeat:no-repeat;
+}
 .expandable
 {
   min-heigt: 20px;
   height: auto;
   margin: 2px;
+  padding:0 0 0 10px;
   background-color: #ddd;
   overflow:hidden;
 }
