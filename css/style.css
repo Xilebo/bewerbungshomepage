@@ -24,11 +24,12 @@
 span	{
 	display: block;
 }
-.header{
+.header {
 	font-weight: bold;
+	font-size: 24px;
 }
 
-.photo	{
+.photo {
 	float: right;
 	max-height: 150px;
 }
