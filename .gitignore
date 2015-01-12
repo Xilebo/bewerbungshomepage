@@ -1,5 +1,6 @@
 ﻿
-bak.helpers.php
+bak.*
+*.bak
 bewerbung.csv
 Foto.png
 Thumbs.db
