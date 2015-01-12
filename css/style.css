@@ -1,13 +1,11 @@
 
-.center-div
-{
+.center-div {
 	margin: 30px auto;
 	width: 50%;
 	height: auto;
 	background-color: #fff;
 }
-.expandable
-{
+.expandable {
 	min-heigt: 20px;
 	height: auto;
 	margin: 2px;
@@ -16,13 +14,11 @@
 }
 .kdaten .field0,
 .level1 .field0,
-.level0 .field0
-{
+.level0 .field0 {
 	width: 160px;
 	float: left;
 }
-.level1 .field1
-{
+.level1 .field1 {
 	margin:0 0 0 160px;
 }
 span	{
