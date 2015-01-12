@@ -66,7 +66,7 @@
 		$html->addLineToHead($newLine);
 	}
 
-	function parseSourceContinue($lineNumber, $lineCount, $lineLevel, $currentLevel) {
+	function continueParseSource($lineNumber, $lineCount, $lineLevel, $currentLevel) {
 		$result = false;
 
 		$lineCountReached = ($lineNumber >= $lineCount);
@@ -81,8 +81,9 @@
 	function parseSource($source, $nextLine = 0, $currentLevel = -1) {
 		$lineCount = count($source);
 		for ($lineNumber = $nextLine;
-				parseSourceContinue($lineNumber, $lineCount, $source[$lineNumber]['level'], $currentLevel);
+				continueParseSource($lineNumber, $lineCount, $source[$lineNumber]['level'], $currentLevel);
 				$lineNumber++) {
+			$result = $lineNumber;
 			$line = $source[$lineNumber];
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
@@ -90,23 +91,21 @@
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				closeTag($line['level'], $line['class']);
-				if ($lineNumber + 1 < $lineCount) {
-					if ($source[$lineNumber + 1]['level'] > $currentLevel) {
-						parseSource($source, $lineNumber + 1, $currentLevel + 1);
-					}
+				if (($lineNumber + 1 < $lineCount)
+						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
+					$tmp = parseSource($source, $lineNumber + 1, $currentLevel + 1);
 				}
 			} elseif ($line['level'] == $currentLevel) {
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
-					parseSource($source, $lineNumber + 1, $currentLevel + 1);
+					$tmp = parseSource($source, $lineNumber + 1, $currentLevel + 1);
 				}
 				closeTag($line['level'], $line['class']);
 			}
 		}
-
-		return $lineNumber;
+		return $result;
 	}
 
 ?>

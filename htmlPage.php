@@ -14,13 +14,6 @@ class HtmlPage {
 		$this->html = file_get_contents('html/template.html');
 	}
 
-	public static function getHtmlPage() {
-		// if (HtmlPage::htmlPage == 0) {
-			// HtmlPage::htmlPage = new HtmlPage();
-		// }
-		// return HtmlPage::htmlPage;
-	}
-
 	function IncTabLevel() {
 		$this->tabLevel++;
 	}
@@ -48,9 +41,6 @@ class HtmlPage {
 	function addLineToBody($text) {
 		$this->addLine('BHP_BODY', $text, $this->tabLevel);
 	}
-	// function openTag() {
-		// $args = func_get_args();
-	// }
 
 	function removeToken($token) {
 		$this->html = str_replace('[' . $token . ']', '', $this->html);
