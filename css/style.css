@@ -1,38 +1,38 @@
 
 .center-div
 {
-  margin: 30px auto;
-  width: 50%;
-  height: auto;
-  background-color: #fff;
+	margin:	30px	auto;
+	width:	50%;
+	height:	auto;
+	background-color:	#fff;
 }
 .expandable
 {
-  min-heigt: 20px;
-  height: auto;
-  margin: 2px;
-  background-color: #ddd;
-  overflow:hidden;
+	min-heigt:	20px;
+	height:	auto;
+	margin:	2px;
+	background-color:	#ddd;
+	overflow:hidden;
 }
-.kdaten .field0,
-.level1 .field0,
-.level0 .field0
+.kdaten	.field0,
+.level1	.field0,
+.level0	.field0
 {
-  width:160px;
-  float:left;
+	width:160px;
+	float:left;
 }
-.level1 .field1
+.level1	.field1
 {
-  margin:0 0 0 160px;
+	margin:0	0	0	160px;
 }
-span {
-  display:block;
+span	{
+	display:block;
 }
 .header{
-  font-weight:bold;
+	font-weight:bold;
 }
 
-.photo {
-	float: right;
-	max-height: 150px;
+.photo	{
+	float:	right;
+	max-height:	150px;
 }
