@@ -16,11 +16,14 @@ body
   background-color: #ddd;
   overflow:hidden;
 }
-.field0, .field1
+.kdaten .field0,
+.level1 .field0,
+.level0 .field0
 {
-  margin:0 0 0 20px;
+  width:10em;
+  float:left;
 }
 .level1 .field1
 {
-  margin:0 0 0 100px;
+  margin:0 0 0 10em;
 }
