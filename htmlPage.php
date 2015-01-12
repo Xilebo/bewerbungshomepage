@@ -56,10 +56,15 @@ class HtmlPage {
 		$this->html = str_replace('[' . $token . ']', '', $this->html);
 	}
 
+	function encoding($code) {
+		$t = mb_detect_encoding($code, "UTF-8, ISO-8859-1, ISO-8859-15", true);
+		return mb_convert_encoding($code, "UTF-8", $t);
+	}
+
 	function printAll() {
 		$this->removeToken('BHP_HEADER');
 		$this->removeToken('BHP_BODY');
-		echo $this->html;
+		echo $this->encoding($this->html);
 	}
 }
 ?>

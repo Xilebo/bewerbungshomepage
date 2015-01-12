@@ -5,12 +5,13 @@ body
 .center-div
 {
   margin: 0 auto;
-  width: 1000px;
+  width: 50%;
   height: auto;
-  background-color: #ccc;
+  background-color: #fff;
 }
 .expandable
 {
+  min-heigt: 20px;
   height: auto;
   margin: 2px;
   background-color: #ddd;
@@ -20,10 +21,16 @@ body
 .level1 .field0,
 .level0 .field0
 {
-  width:10em;
+  width:160px;
   float:left;
 }
 .level1 .field1
 {
-  margin:0 0 0 10em;
+  margin:0 0 0 160px;
+}
+span {
+  display:block;
+}
+.header{
+  font-weight:bold;
 }
