@@ -5,8 +5,6 @@ $(document).ready(function(){
 		$(this).data('isOpen', true);
 	});
 
-
-
 	function toggleExpansion($object, $time) {
 		defaultheight = $object.data('defaultheight');
 		isOpen = $object.data('isOpen');
