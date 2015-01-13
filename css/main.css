@@ -35,10 +35,15 @@
 .level1 .field1 {
 	margin:0 0 0 160px;
 }
-span	{
+.h1 {
 	display: block;
+	margin: 21px 0;
+	font-size: 32px;
+	font-weight: bold;
 }
-.header {
+.h2 {
+	display: block;
+	margin: 19px 0;
 	font-weight: bold;
 	font-size: 24px;
 }
