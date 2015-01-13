@@ -1,6 +1,6 @@
 ﻿
-bak.*
-*.bak
+bak*
+*.bak*
 bewerbung.csv
 Foto.png
 Thumbs.db

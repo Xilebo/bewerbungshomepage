@@ -10,6 +10,17 @@ class HtmlPage {
 	public $html = '';
 	public $tabLevel = 0;
 
+	static function generateOpenTag($class) {
+		return ($class == '') ? '<div>' : '<div class="' . $class . '">';
+	}
+
+	static function generateCloseTag() {
+		// currently its </div> for all, but that may change in the future
+		// TODO better system for tag closing
+		$result = '</div>';
+		return $result;
+	}
+
 	function __construct() {
 		$this->html = file_get_contents('html/template.html');
 	}
