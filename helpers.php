@@ -1,36 +1,23 @@
 <?php
 
-	function generateOpenTag($level, $class) {
-		if (($level < 0) && ($class == '')) {
-			$result = '<div>';
-		} elseif (($level >= 0) && ($class == '')) {
-		    if ($level == 0) {
-				$result = '<div class="expandable level' . $level . '">';
-			} else {
-				$result = '<div class="level' . $level . '">';
-			}
-		} elseif (($level < 0) && ($class != '')) {
-			$result = '<div class="' . $class . '">';
-		} elseif (($level >= 0) && ($class != '')) {
-			if ($level == 0) {
-				$result = '<div class="expandable level' . $level . ' '
-					. $class . '">';
-			} else {
-				$result = '<div class="level' . $level . ' ' . $class . '">';
-			}
+	function addClassByLevel($class, $level) {
+		if ($class != '') {
+			$class .= ' ';
 		}
-		return $result;
-	}
+		if ($level >= 0) {
+			$class .= 'expandable ';
+		}
+		if ($level >= -1){
+			$class .= 'level' . $level;
+		}
 
-	function generateCloseTag($level, $class) {
-		// currently its </div> for all, but that may change in the future
-		$result = '</div>';
-		return $result;
+		return $class;
 	}
 
 	function openTag($level, $class) {
 		global $html;
-		$openTag = generateOpenTag($level, $class);
+		$class = addClassByLevel($class, $level);
+		$openTag = HtmlPage::generateOpenTag($class);
 		$html->addLineToBody($openTag);
 		$html->IncTabLevel();
 	}
@@ -38,7 +25,7 @@
 	function closeTag($level, $class) {
 		global $html;
 		$html->DecTabLevel();
-		$closeTag = generateCloseTag($level, $class);
+		$closeTag = HtmlPage::generateCloseTag();
 		$html->addLineToBody($closeTag);
 
 	}
