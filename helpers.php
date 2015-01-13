@@ -34,7 +34,7 @@
 		global $html;
 		$fieldcount = count($line) - 2;
 		for ($i = 0; $i < $fieldcount; $i++) {
-			$html->addLineToBody('<span class="field' . $i . '">');
+			$html->addLineToBody('<span class="field field' . $i . '">');
 			$html->IncTabLevel();
 			$html->addLineToBody($line[$i]);
 			$html->DecTabLevel();
