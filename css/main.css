@@ -21,8 +21,10 @@
 	padding:0 0 0 12px;
 	overflow:hidden;
 }
-.field0 {
+.field {
 	display: inline-table;
+}
+.field0 {
 	min-width: 140px;
 }
 .h1 {
@@ -42,4 +44,21 @@
 }
 .photo {
 	max-height: 240px;
+	margin-top: 41px;
+}
+.header {
+	font-size: 13px;
+}
+.header .field {
+	width: 32.8%;
+	min-width: 0;
+}
+.header .field0 {
+	text-align: left;
+}
+.header .field1 {
+	text-align: center;
+}
+.header .field2 {
+	text-align: right;
 }
