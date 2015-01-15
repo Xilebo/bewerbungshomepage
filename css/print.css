@@ -7,3 +7,7 @@
 .open {
 	background-image:none;
 }
+a {
+    color: black;
+    text-decoration: none;
+}
