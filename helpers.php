@@ -80,14 +80,14 @@
 				closeTag($line['level'], $line['class']);
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
-					$tmp = parseSource($source, $lineNumber + 1, $currentLevel + 1);
+					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
 				}
 			} elseif ($line['level'] == $currentLevel) {
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
-					$tmp = parseSource($source, $lineNumber + 1, $currentLevel + 1);
+					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
 				}
 				closeTag($line['level'], $line['class']);
 			}
