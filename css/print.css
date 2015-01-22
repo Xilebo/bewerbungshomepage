@@ -1,11 +1,8 @@
+.arrow {
+	display: none;
+}
 .center-div {
 	margin: 0 auto;
-}
-.closed {
-	background-image:none;
-}
-.open {
-	background-image:none;
 }
 a {
     color: black;

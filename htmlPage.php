@@ -57,6 +57,15 @@ class HtmlPage {
 		$this->html = str_replace('[' . $token . ']', '', $this->html);
 	}
 
+	function addWrappedInTag($tag, $class, $content) {
+		$openTag = ($class == '') ? '<' . $tag . '>' : '<' . $tag . ' class="' . $class . '">';
+		$closeTag = '</' . $tag . '>';
+
+		$this->addLineToBody($openTag);
+		addLineToBody($content);
+		$this->addLineToBody($closeTag);
+	}
+
 	function encoding($code) {
 		$t = mb_detect_encoding($code, "UTF-8, ISO-8859-1, ISO-8859-15", true);
 		return mb_convert_encoding($code, "UTF-8", $t);

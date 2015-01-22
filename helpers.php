@@ -1,17 +1,38 @@
 <?php
 
 	function addClassByLevel($class, $level) {
+		global $html;
 		if ($class != '') {
 			$class .= ' ';
 		}
 		if ($level >= 0) {
 			$class .= 'expandable ';
+			$html->addLineToBody("<a href=\"#\" data-openimage=\"./icon/icon_arrow_down.png\" data-closedimage=\"./icon/icon_arrow_right.png\">"
+				."<img src=\"./icon/icon_arrow_right.png\" class=\"arrow\" /></a>");
 		}
 		if ($level >= -1){
 			$class .= 'level' . $level;
 		}
 
 		return $class;
+	}
+
+	function addContent($level, $class, $content) {
+		$tagList = array('div', 'span', 'h1', 'h2', 'h3');
+		global $html;
+
+		$class = addClassByLevel($class, $level);
+		$tmp = explode(' ', trim($class))[0];
+		if (array_search($tmp, $tagList) !== FALSE) {
+			$html->IncTabLevel();
+			$html->addWrappedInTag($tmp, $class, $content);
+			$html->DecTabLevel();
+		} else {
+			$html->IncTabLevel();
+			$html->addWrappedInTag('div', $class, $content);
+			$html->DecTabLevel();
+		}
+
 	}
 
 	function openTag($level, $class) {
@@ -75,9 +96,10 @@
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
 			} elseif ($line['level'] < 0) {
-				openTag($line['level'], $line['class']);
-				addLineToBody($line);
-				closeTag($line['level'], $line['class']);
+				addContent($line['level'], $line['class'], $line);
+				//openTag($line['level'], $line['class']);
+				//addLineToBody($line);
+				//closeTag($line['level'], $line['class']);
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
 					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
