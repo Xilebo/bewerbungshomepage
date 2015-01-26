@@ -1,6 +1,6 @@
 <?php
 	require_once('source.php');
-	require_once('htmlPage.php');
+	require_once('html/htmlPage.php');
 	require_once('helpers.php');
 
 	$html = new HtmlPage();
