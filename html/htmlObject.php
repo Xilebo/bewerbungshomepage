@@ -3,7 +3,7 @@
  * The class htmlObject represents a single object of the page.
  */
 class htmlObject {
-	protected static $validTypes = array('div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+	protected static $validTypes = array('body', 'div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 	private $type = '';
 	private $tabLevel = 0;
 	private $content = array();

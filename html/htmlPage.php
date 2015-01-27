@@ -11,6 +11,7 @@ class HtmlPage {
 	private static $htmlPage = 0;
 
 	public $html = '';
+	private $body = NULL;
 	public $tabLevel = 0;
 
 	static function generateOpenTag($class) {
@@ -26,6 +27,7 @@ class HtmlPage {
 
 	function __construct() {
 		$this->html = file_get_contents('html/template.html');
+		$this->body = new htmlObject('body');
 	}
 
 	function IncTabLevel() {
@@ -51,7 +53,7 @@ class HtmlPage {
 	}
 
 	function addLineToBody($text) {
-		$this->addLine('BHP_BODY', $text, $this->tabLevel);
+		$this->body->addContent($text);
 	}
 
 	function removeToken($token) {
@@ -65,7 +67,10 @@ class HtmlPage {
 
 	function printAll() {
 		$this->removeToken('BHP_HEADER');
-		$this->removeToken('BHP_BODY');
+
+		$newLine = $this->body->toString();
+		$this->html = str_replace('[BHP_BODY]', $newLine, $this->html);
+
 		echo $this->encoding($this->html);
 	}
 }
