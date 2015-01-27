@@ -17,6 +17,14 @@ class htmlObject {
 		return $result;
 	}
 
+	static function getValidTypes() {
+		return htmlObject::validTypes;
+	}
+
+	static function isValidType($type) {
+		return in_array(strtolower($type), htmlObject::validTypes);
+	}
+
 	function __construct($type = 'span') {
 		$this->type = $type;
 	}
@@ -65,15 +73,6 @@ class htmlObject {
 		$result .= $this->getCloseTag();
 
 		return $result;
-	}
-
-	function getValidTypes() {
-		return $this->validTypes;
-	}
-
-	function isValidType($type) {
-		return in_array(strtolower($type), htmlObject::validTypes);
-
 	}
 
 	function getType() {
