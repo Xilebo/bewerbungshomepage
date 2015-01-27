@@ -40,9 +40,7 @@ class HtmlPage {
 
 	function addLine($token, $text, $tabLevel) {
 		$newLine = '';
-		for ($i = 0; $i < $tabLevel; $i++) {
-			$newLine .= "\t";
-		}
+		$newLine .= htmlObject::generateTabs($tabLevel);
 		$newLine .= $text . PHP_EOL;
 		$newLine .= '[' . $token . ']';
 		$this->html = str_replace('[' . $token . ']', $newLine, $this->html);
