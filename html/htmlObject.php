@@ -3,7 +3,7 @@
  * The class htmlObject represents a single object of the page.
  */
 class htmlObject {
-	protected static $validTypes = array('body', 'div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
+	protected static $validTypes = array('span', 'body', 'div', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 	private $type = '';
 	private $tabLevel = 0;
 	private $content = array();
@@ -18,15 +18,21 @@ class htmlObject {
 	}
 
 	static function getValidTypes() {
-		return htmlObject::validTypes;
+		return htmlObject::$validTypes;
 	}
 
 	static function isValidType($type) {
-		return in_array(strtolower($type), htmlObject::validTypes);
+		$type = strtolower($type);
+		$result = in_array($type, htmlObject::getValidTypes());
+		return $result;
 	}
 
 	function __construct($type = 'span') {
-		$this->type = $type;
+		if (htmlObject::isValidType($newType)) {
+			$this->type = $type;
+		} else {
+			$this->type = htmlObject::getValidTypes()[0];
+		}
 	}
 
 	protected function getOpenTag() {
@@ -80,7 +86,9 @@ class htmlObject {
 	}
 
 	function setType($newType) {
-		$this->type = $newType;
+		if (isValidType::isValidType($newType)) {
+			$this->type = $newType;
+		}
 	}
 
 	function setTabLevel($newTabLevel) {
