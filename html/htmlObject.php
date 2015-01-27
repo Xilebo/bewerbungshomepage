@@ -3,6 +3,7 @@
  * The class htmlObject represents a single object of the page.
  */
 class htmlObject {
+	protected static $validTypes = array('div', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 	private $type = '';
 	private $tabLevel = 0;
 	private $content = array();
@@ -25,6 +26,15 @@ class htmlObject {
 		}
 		$result .= '</' . $type . '>'; //no EOL; EOL will be added by parent element
 		return $result;
+	}
+
+	function getValidTypes() {
+		return $this->validTypes;
+	}
+
+	function isValidType($type) {
+		return in_array(strtolower($type), htmlObject::validTypes);
+
 	}
 
 	function getType() {
