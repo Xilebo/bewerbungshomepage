@@ -9,22 +9,61 @@ class htmlObject {
 	private $content = array();
 	private $properties = array();
 
+	static function generateTabs($count) {
+		$result = '';
+		for ($i = 0; $i < $count; $i++) {
+			$result .= "\t";
+		}
+		return $result;
+	}
+
 	function __construct($type = 'span') {
 		$this->type = $type;
 	}
 
-	function toString() {
+	protected function getOpenTag() {
 		$result = '';
 
-		$result .= '<' . $type;
+		$result .= htmlObject::generateTabs($this->tabLevel);
+		$result .= '<' . $this->type;
 		foreach ($this->properties as $property => $value) {
 			$result .= ' ' . $property . '="' . $value . '"';
 		}
 		$result .= '>' . PHP_EOL;
+
+		return $result;
+	}
+
+	protected function getCloseTag() {
+		$result = '';
+
+		$result .= htmlObject::generateTabs($this->tabLevel);
+		$result .= '</' . $this->type . '>' . PHP_EOL;
+
+		return $result;
+	}
+
+	protected function contentToString() {
+		$result = '';
+
 		foreach ($this->content as $childelement) {
-			$result .= $childelement . PHP_EOL;
+			if (get_class($childelement) == 'htmlObject') {
+				$result .= $childelement->toString();
+			} else {
+				$result .= htmlObject::generateTabs($this->tabLevel + 1);
+				$result .= $childelement . PHP_EOL;
+			}
 		}
-		$result .= '</' . $type . '>'; //no EOL; EOL will be added by parent element
+
+		return $result;
+	}
+
+	function toString() {
+		$result = '';
+		$result .= $this->getOpenTag();
+		$result .= $this->contentToString();
+		$result .= $this->getCloseTag();
+
 		return $result;
 	}
 
