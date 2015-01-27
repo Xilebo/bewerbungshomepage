@@ -4,7 +4,7 @@
  */
 class htmlObject {
 	private $type = '';
-	private $tabLevel = 0
+	private $tabLevel = 0;
 	private $content = array();
 	private $properties = array();
 
