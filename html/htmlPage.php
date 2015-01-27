@@ -1,4 +1,7 @@
 ﻿<?php
+
+require_once('htmlObject.php');
+
 /**
  * Die Klasse HtmlPage verwaltet den HTML-Code der Seite.
  * Sie stellt hilfreiche Funktionen zum bearbeiten des Codes zur Verfügung
