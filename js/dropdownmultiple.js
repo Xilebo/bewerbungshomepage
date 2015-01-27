@@ -2,30 +2,26 @@ $(document).ready(function(){
 
 	$(".expandable").each(function(){
 		$(this).data('defaultheight', $(this).height());
-		$(this).data('isOpen', true);
+		$(this).data('isOpen', false);
 	});
 
 	function toggleExpansion($object, $time) {
 		defaultheight = $object.data('defaultheight');
 		isOpen = $object.data('isOpen');
 		if ( isOpen ) {
-			$object.animate({
-				height: 20
-			}, $time );
+			$object.toggleClass( "expandable", $time, "easeOutSine" );
 			$object.data('isOpen', false);
 			$object.addClass('closed');
 			$object.removeClass('open');
 		} else {
-			$object.animate({
-				height: defaultheight
-			}, $time );
+			$object.toggleClass( "expandable", $time, "easeOutSine" );
 			$object.data('isOpen', true);
 			$object.addClass('open');
 			$object.removeClass('closed');
 		}
 	}
 
-	toggleExpansion($(".expandable > span").parent(), 0);
+	toggleExpansion($(".expandable > span").parent(), 1000);
 
 	$(".expandable > span").click(function() {
 		toggleExpansion($(this).parent(),1000);

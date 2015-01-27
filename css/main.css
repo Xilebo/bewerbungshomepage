@@ -8,17 +8,18 @@
 	background-size: 10px 10px;
 	background-position: 0px 5px;
 	background-repeat:no-repeat;
+	padding:0 0 0 12px;
 }
 .open {
 	background-image:url(../icon/icon_arrow_down.png);
 	background-size: 10px 10px;
 	background-position: 0px 4px;
 	background-repeat:no-repeat;
+	padding:0 0 0 12px;
 }
 .expandable
 {
-	min-height: 20px;
-	padding:0 0 0 12px;
+	height: 20px;
 	overflow:hidden;
 }
 .field {
