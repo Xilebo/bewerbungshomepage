@@ -52,6 +52,9 @@ class HtmlPage {
 		$this->addLine('BHP_HEADER', $text, 1);
 	}
 
+	/**
+	 * depricated
+	 */
 	function addLineToBody($text) {
 		$this->body->addContent($text);
 	}

@@ -33,6 +33,7 @@
 	function addLineToBody($line) {
 		global $html;
 		$fieldcount = count($line) - 2;
+		//TODO use htmlObject
 		for ($i = 0; $i < $fieldcount; $i++) {
 			$html->addLineToBody('<span class="field field' . $i . '">');
 			$html->IncTabLevel();
@@ -75,6 +76,7 @@
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
 			} elseif ($line['level'] < 0) {
+				//TODO use htmlObject
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				closeTag($line['level'], $line['class']);
@@ -83,6 +85,7 @@
 					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
 				}
 			} elseif ($line['level'] == $currentLevel) {
+				//TODO use htmlObject
 				openTag($line['level'], $line['class']);
 				addLineToBody($line);
 				if (($lineNumber + 1 < $lineCount)

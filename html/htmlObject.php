@@ -112,6 +112,7 @@ class htmlObject {
 	}
 
 	function addPropertyValue ($property, $value) {
+		//TODO catch unset fields
 		$this->properties[$property] .= $value;
 	}
 
