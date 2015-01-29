@@ -30,6 +30,23 @@
 
 	}
 
+	function parseLine() {
+		$class = addClassByLevel($line['class'], $line['level']);
+		$lineHtml = new htmlObject('div');
+		$lineHtml->addClass($class);
+
+		$fieldcount = count($line) - 2; //the fields 'level' and 'class' don't get displayed
+		for ($i = 0; $i < $fieldcount; $i++) {
+			$fieldHtml = new htmlObject('span');
+			$fieldHtml->addClass('field');
+			$fieldHtml->addClass('field' . $i);
+			$fieldHtml->addContent($line[$i]);
+			$lineHtml->addContent($fieldHtml);
+		}
+
+		return $lineHtml;
+	}
+
 	function addLineToBody($line) {
 		global $html;
 		$fieldcount = count($line) - 2;
