@@ -47,10 +47,12 @@
 		return $lineHtml;
 	}
 
+	/**
+	 * depricated
+	 */
 	function addLineToBody($line) {
 		global $html;
 		$fieldcount = count($line) - 2;
-		//TODO use htmlObject
 		for ($i = 0; $i < $fieldcount; $i++) {
 			$html->addLineToBody('<span class="field field' . $i . '">');
 			$html->IncTabLevel();
