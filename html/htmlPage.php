@@ -56,10 +56,10 @@ class HtmlPage {
 	 * depricated
 	 */
 	function addLineToBody($text) {
-		$this->addHtmlObject($text);
+		$this->addHtmlObjectToBody($text);
 	}
 
-	function addHtmlObject($object) {
+	function addHtmlObjectToBody($object) {
 		$this->body->addContent($object);
 	}
 
