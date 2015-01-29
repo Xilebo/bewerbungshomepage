@@ -56,7 +56,11 @@ class HtmlPage {
 	 * depricated
 	 */
 	function addLineToBody($text) {
-		$this->body->addContent($text);
+		$this->addHtmlObject($text);
+	}
+
+	function addHtmlObject($object) {
+		$this->body->addContent($object);
 	}
 
 	function removeToken($token) {
