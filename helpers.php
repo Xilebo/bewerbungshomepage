@@ -1,5 +1,8 @@
 <?php
 
+	/**
+	 * add level spezific classes
+	 */
 	function addClassByLevel($class, $level) {
 		if ($class != '') {
 			$class .= ' ';
@@ -14,32 +17,21 @@
 		return $class;
 	}
 
-	function openTag($level, $class) {
-		global $html;
-		$class = addClassByLevel($class, $level);
-		$openTag = HtmlPage::generateOpenTag($class);
-		$html->addLineToBody($openTag);
-		$html->IncTabLevel();
-	}
+	function parseLine($line) {
+		$class = addClassByLevel($line['class'], $line['level']);
+		$lineHtml = new htmlObject('div');
+		$lineHtml->addClass($class);
 
-	function closeTag($level, $class) {
-		global $html;
-		$html->DecTabLevel();
-		$closeTag = HtmlPage::generateCloseTag();
-		$html->addLineToBody($closeTag);
-
-	}
-
-	function addLineToBody($line) {
-		global $html;
-		$fieldcount = count($line) - 2;
+		$fieldcount = count($line) - 2; //the fields 'level' and 'class' don't get displayed
 		for ($i = 0; $i < $fieldcount; $i++) {
-			$html->addLineToBody('<span class="field field' . $i . '">');
-			$html->IncTabLevel();
-			$html->addLineToBody($line[$i]);
-			$html->DecTabLevel();
-			$html->addLineToBody('</span>');
+			$fieldHtml = new htmlObject('span');
+			$fieldHtml->addClass('field');
+			$fieldHtml->addClass('field' . $i);
+			$fieldHtml->addContent($line[$i]);
+			$lineHtml->addContent($fieldHtml);
 		}
+
+		return $lineHtml;
 	}
 
 	function addLineToHead($line) {
@@ -67,29 +59,31 @@
 
 	function parseSource($source, $nextLine = 0, $currentLevel = -1) {
 		$lineCount = count($source);
+		$result = new htmlObject('div');
 		for ($lineNumber = $nextLine;
 				continueParseSource($lineNumber, $lineCount, $source[$lineNumber]['level'], $currentLevel);
 				$lineNumber++) {
-			$result = $lineNumber;
 			$line = $source[$lineNumber];
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
 			} elseif ($line['level'] < 0) {
-				openTag($line['level'], $line['class']);
-				addLineToBody($line);
-				closeTag($line['level'], $line['class']);
+				$lineDiv = parseLine($line);
+				$result->addContent($lineDiv);
+
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
 					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
+					$result->addContent($tmp);
 				}
 			} elseif ($line['level'] == $currentLevel) {
-				openTag($line['level'], $line['class']);
-				addLineToBody($line);
+				$lineDiv = parseLine($line);
+				$result->addContent($lineDiv);
+
 				if (($lineNumber + 1 < $lineCount)
 						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
 					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
+					$lineDiv->addContent($tmp);
 				}
-				closeTag($line['level'], $line['class']);
 			}
 		}
 		return $result;

@@ -1,4 +1,7 @@
 ﻿<?php
+
+require_once('htmlObject.php');
+
 /**
  * Die Klasse HtmlPage verwaltet den HTML-Code der Seite.
  * Sie stellt hilfreiche Funktionen zum bearbeiten des Codes zur Verfügung
@@ -8,38 +11,16 @@ class HtmlPage {
 	private static $htmlPage = 0;
 
 	public $html = '';
-	public $tabLevel = 0;
-
-	static function generateOpenTag($class) {
-		return ($class == '') ? '<div>' : '<div class="' . $class . '">';
-	}
-
-	static function generateCloseTag() {
-		// currently its </div> for all, but that may change in the future
-		// TODO better system for tag closing
-		$result = '</div>';
-		return $result;
-	}
+	private $body = NULL;
 
 	function __construct() {
 		$this->html = file_get_contents('html/template.html');
-	}
-
-	function IncTabLevel() {
-		$this->tabLevel++;
-	}
-	function DecTabLevel() {
-		$this->tabLevel--;
-	}
-	function getTabLevel() {
-		return $this->tabLevel;
+		$this->body = new htmlObject('body');
 	}
 
 	function addLine($token, $text, $tabLevel) {
 		$newLine = '';
-		for ($i = 0; $i < $tabLevel; $i++) {
-			$newLine .= "\t";
-		}
+		$newLine .= htmlObject::generateTabs($tabLevel);
 		$newLine .= $text . PHP_EOL;
 		$newLine .= '[' . $token . ']';
 		$this->html = str_replace('[' . $token . ']', $newLine, $this->html);
@@ -49,8 +30,8 @@ class HtmlPage {
 		$this->addLine('BHP_HEADER', $text, 1);
 	}
 
-	function addLineToBody($text) {
-		$this->addLine('BHP_BODY', $text, $this->tabLevel);
+	function addHtmlObjectToBody($object) {
+		$this->body->addContent($object);
 	}
 
 	function removeToken($token) {
@@ -64,7 +45,10 @@ class HtmlPage {
 
 	function printAll() {
 		$this->removeToken('BHP_HEADER');
-		$this->removeToken('BHP_BODY');
+
+		$newLine = $this->body->toString();
+		$this->html = str_replace('[BHP_BODY]', $newLine, $this->html);
+
 		echo $this->encoding($this->html);
 	}
 }

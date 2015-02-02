@@ -6,11 +6,12 @@ class source {
 
 	private $file;
 
-	public $data = array();
+	private $data = array();
 	public $status = STATUS_OK;
 
 	function __construct($file = 'bewerbung.csv') {
 		$this->file = $file;
+		$this->readFile ();
 	}
 
 	function readFile () {
@@ -30,6 +31,10 @@ class source {
 			fclose($sourcefile);
 			$status = $this::STATUS_OK;
 		}
+	}
+
+	function getData() {
+		return $this->data;
 	}
 }
 ?>
