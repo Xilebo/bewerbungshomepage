@@ -23,6 +23,10 @@
 .level1.open {
 	margin: 0 0 0 140px;
 }
+.level1 .field0 {
+	min-width:0;
+}
+
 .expandable {
 	height: 20px;
 	overflow: hidden;
