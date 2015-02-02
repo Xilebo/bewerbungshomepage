@@ -12,32 +12,10 @@ class HtmlPage {
 
 	public $html = '';
 	private $body = NULL;
-	public $tabLevel = 0;
-
-	static function generateOpenTag($class) {
-		return ($class == '') ? '<div>' : '<div class="' . $class . '">';
-	}
-
-	static function generateCloseTag() {
-		// currently its </div> for all, but that may change in the future
-		// TODO better system for tag closing
-		$result = '</div>';
-		return $result;
-	}
 
 	function __construct() {
 		$this->html = file_get_contents('html/template.html');
 		$this->body = new htmlObject('body');
-	}
-
-	function IncTabLevel() {
-		$this->tabLevel++;
-	}
-	function DecTabLevel() {
-		$this->tabLevel--;
-	}
-	function getTabLevel() {
-		return $this->tabLevel;
 	}
 
 	function addLine($token, $text, $tabLevel) {
@@ -50,13 +28,6 @@ class HtmlPage {
 
 	function addLineToHead($text) {
 		$this->addLine('BHP_HEADER', $text, 1);
-	}
-
-	/**
-	 * depricated
-	 */
-	function addLineToBody($text) {
-		$this->addHtmlObjectToBody($text);
 	}
 
 	function addHtmlObjectToBody($object) {

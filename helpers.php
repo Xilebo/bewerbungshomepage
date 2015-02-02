@@ -17,22 +17,6 @@
 		return $class;
 	}
 
-	function openTag($level, $class) {
-		global $html;
-		$class = addClassByLevel($class, $level);
-		$openTag = HtmlPage::generateOpenTag($class);
-		$html->addLineToBody($openTag);
-		$html->IncTabLevel();
-	}
-
-	function closeTag($level, $class) {
-		global $html;
-		$html->DecTabLevel();
-		$closeTag = HtmlPage::generateCloseTag();
-		$html->addLineToBody($closeTag);
-
-	}
-
 	function parseLine($line) {
 		$class = addClassByLevel($line['class'], $line['level']);
 		$lineHtml = new htmlObject('div');
@@ -48,21 +32,6 @@
 		}
 
 		return $lineHtml;
-	}
-
-	/**
-	 * depricated
-	 */
-	function addLineToBody($line) {
-		global $html;
-		$fieldcount = count($line) - 2;
-		for ($i = 0; $i < $fieldcount; $i++) {
-			$html->addLineToBody('<span class="field field' . $i . '">');
-			$html->IncTabLevel();
-			$html->addLineToBody($line[$i]);
-			$html->DecTabLevel();
-			$html->addLineToBody('</span>');
-		}
 	}
 
 	function addLineToHead($line) {
