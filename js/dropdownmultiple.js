@@ -21,8 +21,6 @@ $(document).ready(function(){
 		}
 	}
 
-	toggleExpansion($(".expandable > span").parent(), 1000);
-
 	$(".expandable > span").click(function() {
 		toggleExpansion($(this).parent(),1000);
 	});
