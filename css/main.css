@@ -23,7 +23,7 @@
 	overflow:hidden;
 }
 .field {
-	display: inline-table;
+	display: table-cell;
 }
 .field0 {
 	min-width: 140px;
