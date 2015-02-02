@@ -8,7 +8,7 @@
 			$class .= ' ';
 		}
 		if ($level >= 0) {
-			$class .= 'expandable ';
+			$class .= 'expandable closed ';
 		}
 		if ($level >= -1){
 			$class .= 'level' . $level;
