@@ -28,7 +28,7 @@ class htmlObject {
 	}
 
 	function __construct($type = 'span') {
-		if (htmlObject::isValidType($newType)) {
+		if (htmlObject::isValidType($type)) {
 			$this->type = $type;
 		} else {
 			$this->type = htmlObject::getValidTypes()[0];
@@ -117,7 +117,7 @@ class htmlObject {
 
 	function addPropertyValue($property, $value) {
 		if (isset($this->properties[$property])) {
-			$this->properties[$property] .= $value;
+			$this->properties[$property] .= ' ' . $value;
 		} else {
 			$this->setProperty($property, $value);
 		}

@@ -6,14 +6,17 @@
 	$html = new HtmlPage();
 
 	$source = new source('bewerbung.csv');
-	$html->IncTabLevel();
-	$html->addLineToBody('<div class="center-div">');
+	// $html->IncTabLevel();
+	// $html->addLineToBody('<div class="center-div">');
 
-	$html->IncTabLevel();
-	parseSource($source->getData());
-	$html->DecTabLevel();
+	// $html->IncTabLevel();
+	$centerDiv = parseSource($source->getData());
+	$centerDiv->addClass('center-div');
+	$html->addHtmlObjectToBody($centerDiv);
 
-	$html->addLineToBody('</div>');
-	$html->DecTabLevel();
+	// $html->DecTabLevel();
+
+	// $html->addLineToBody('</div>');
+	// $html->DecTabLevel();
 	$html->printAll();
 ?>
