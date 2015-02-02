@@ -4,60 +4,55 @@
 	width: 16.7cm;
 }
 .closed {
-	background-image: url("../icon/icon_arrow_right.png");
-	background-position: 0 5px;
-	background-repeat: no-repeat;
+	background-image:url(../icon/icon_arrow_right.png);
 	background-size: 10px 10px;
-	padding: 0 0 0 12px;
+	background-position: 0px 5px;
+	background-repeat:no-repeat;
+	padding:0 0 0 12px;
 }
 .open {
-	background-image: url("../icon/icon_arrow_down.png");
-	background-position: 0 4px;
-	background-repeat: no-repeat;
+	background-image:url(../icon/icon_arrow_down.png);
 	background-size: 10px 10px;
-	padding: 0 0 0 12px;
+	background-position: 0px 4px;
+	background-repeat:no-repeat;
+	padding:0 0 0 12px;
 }
-.level1.closed {
-	margin: 0 0 0 140px;
-}
-.level1.open {
-	margin: 0 0 0 140px;
-}
-.expandable {
+.expandable
+{
 	height: 20px;
-	overflow: hidden;
+	overflow:hidden;
 }
 .field {
-	display: table-cell;
+	display: inline-table;
 }
 .field0 {
 	min-width: 140px;
 }
 .h1 {
 	display: block;
+	margin: 21px 0;
 	font-size: 32px;
 	font-weight: bold;
-	margin: 21px 0;
 }
 .h2 {
 	display: block;
-	font-size: 24px;
-	font-weight: bold;
 	margin: 19px 0;
+	font-weight: bold;
+	font-size: 24px;
 }
 .image .field {
 	float: right;
 }
 .photo {
-	margin-top: 41px;
 	max-height: 240px;
+	margin-top: 41px;
 }
 .header {
 	font-size: 13px;
 }
 .header .field {
-	min-width: 0;
 	width: 32.8%;
+	min-width: 0;
 }
 .header .field0 {
 	text-align: left;
