@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 * add level spezific classes
+	 * add level specific classes
 	 */
 	function addClassByLevel($class, $level) {
 		if ($class != '') {
