@@ -60,29 +60,26 @@
 	function parseSource($source, $nextLine = 0, $currentLevel = -1) {
 		$lineCount = count($source);
 		$result = new htmlObject('div');
-		for ($lineNumber = $nextLine;
-				continueParseSource($lineNumber, $lineCount, $source[$lineNumber]['level'], $currentLevel);
-				$lineNumber++) {
-			$line = $source[$lineNumber];
+		for ($i = $nextLine;
+				continueParseSource($i, $lineCount, $source[$i]['level'], $currentLevel);
+				$i++) {
+			$line = $source[$i];
 			if ($line['level'] == 'head') {
 				addLineToHead($line);
-			} elseif ($line['level'] < 0) {
-				$lineDiv = parseLine($line);
-				$result->addContent($lineDiv);
-
-				if (($lineNumber + 1 < $lineCount)
-						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
-					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
-					$result->addContent($tmp);
-				}
 			} elseif ($line['level'] == $currentLevel) {
 				$lineDiv = parseLine($line);
 				$result->addContent($lineDiv);
 
-				if (($lineNumber + 1 < $lineCount)
-						&& ($source[$lineNumber + 1]['level'] > $currentLevel)) {
-					$tmp = parseSource($source, $lineNumber + 1, $source[$lineNumber + 1]['level']);
-					$lineDiv->addContent($tmp);
+				//check if the next element has a higher level
+				//if so - add it at the right place
+				if (($i + 1 < $lineCount)
+						&& ($source[$i + 1]['level'] > $currentLevel)) {
+					$tmp = parseSource($source, $i + 1, $source[$i + 1]['level']);
+					if ($line['level'] < 0) {
+						$result->addContent($tmp);
+					} else {
+						$lineDiv->addContent($tmp);
+					}
 				}
 			}
 		}
