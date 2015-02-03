@@ -35,6 +35,10 @@ class htmlObject {
 		}
 	}
 
+	/**
+	 * helper function for toString()
+	 * @return string the opening tag for this element
+	 */
 	protected function getOpenTag() {
 		$result = '';
 
@@ -48,6 +52,10 @@ class htmlObject {
 		return $result;
 	}
 
+	/**
+	 * helper function for toString()
+	 * @return string the closing tag for this element
+	 */
 	protected function getCloseTag() {
 		$result = '';
 
@@ -57,6 +65,10 @@ class htmlObject {
 		return $result;
 	}
 
+	/**
+	 * helper function for toString()
+	 * @return string stringrepresentation for all child elements
+	 */
 	protected function contentToString() {
 		$result = '';
 
