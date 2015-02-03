@@ -68,6 +68,9 @@
 				addLineToHead($line);
 			} elseif ($line['level'] == $currentLevel) {
 				$lineDiv = parseLine($line);
+				$lineDiv->addClass('line');
+				$lineDiv->addClass('line' . $i);
+
 				$result->addContent($lineDiv);
 
 				//check if the next element has a higher level
