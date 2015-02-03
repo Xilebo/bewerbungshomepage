@@ -5,7 +5,7 @@
 class htmlObject {
 	protected static $validTypes = array('span', 'body', 'div', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6');
 	private $type = '';
-	private $tabLevel = 0;
+	private $depth = 0;
 	private $content = array();
 	private $properties = array();
 
@@ -42,7 +42,7 @@ class htmlObject {
 	protected function getOpenTag() {
 		$result = '';
 
-		$result .= htmlObject::generateTabs($this->tabLevel);
+		$result .= htmlObject::generateTabs($this->depth);
 		$result .= '<' . $this->type;
 		foreach ($this->properties as $property => $value) {
 			$result .= ' ' . $property . '="' . $value . '"';
@@ -59,7 +59,7 @@ class htmlObject {
 	protected function getCloseTag() {
 		$result = '';
 
-		$result .= htmlObject::generateTabs($this->tabLevel);
+		$result .= htmlObject::generateTabs($this->depth);
 		$result .= '</' . $this->type . '>' . PHP_EOL;
 
 		return $result;
@@ -76,7 +76,7 @@ class htmlObject {
 			if (get_class($childelement) == 'htmlObject') {
 				$result .= $childelement->toString();
 			} else {
-				$result .= htmlObject::generateTabs($this->tabLevel + 1);
+				$result .= htmlObject::generateTabs($this->depth + 1);
 				$result .= $childelement . PHP_EOL;
 			}
 		}
@@ -103,18 +103,18 @@ class htmlObject {
 		}
 	}
 
-	function setTabLevel($newTabLevel) {
-		$this->tabLevel = $newTabLevel;
+	function setDepth($newDepth) {
+		$this->depth = $newDepth;
 		foreach ($this->content as $element) {
 			if (get_class($element) == 'htmlObject') {
-				$element->setTabLevel($this->tabLevel + 1);
+				$element->setDepth($this->depth + 1);
 			}
 		}
 	}
 
 	function addContent($newContent) {
 		if (get_class($newContent) == 'htmlObject') {
-			$newContent->setTabLevel($this->tabLevel + 1);
+			$newContent->setDepth($this->depth + 1);
 		}
 		$this->content[] = $newContent;
 	}
