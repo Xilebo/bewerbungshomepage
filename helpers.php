@@ -19,8 +19,16 @@
 		$lineHtml = new htmlObject('div');
 		$lineHtml->addClass($class);
 
+		$firstFilled = true;
 		$fieldcount = count($line) - 2; //the fields 'level' and 'class' don't get displayed
 		for ($i = 0; $i < $fieldcount; $i++) {
+			if ($firstFilled && (strlen($line[$i]) > 0)) {
+				$firstFilled = false;
+				$iconHtml = new htmlObject('span');
+				$iconHtml->addClass('icon');
+				// $iconHtml->addContent('&nbsp;');
+				$lineHtml->addContent($iconHtml);
+			}
 			$fieldHtml = new htmlObject('span');
 			$fieldHtml->addClass('field');
 			$fieldHtml->addClass('field' . $i);

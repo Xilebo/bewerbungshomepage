@@ -3,19 +3,33 @@
 	margin: 30px auto;
 	width: 16.7cm;
 }
-.expandable.closed:hover {
-	background-image:url(../icon/icon_arrow_blue_right.svg);
+.expandable {
+	overflow: hidden;
+}
+.expandable > span {
+	cursor: pointer;
 }
 .expandable.closed {
-	background-image:url(../icon/icon_arrow_right.svg);
 	height: 20px;
 }
-.expandable {
-	background-image:url(../icon/icon_arrow_down.svg);
-	background-position: 0px 5px;
-	overflow:hidden;
-	background-size: 10px 10px;
-	background-repeat:no-repeat;
+.expandable.closed:hover > .icon{
+	background-position: 0 10px;
+}
+.expandable:hover > .icon{
+	background-position: 10px 10px;
+}
+.expandable.closed > .icon {
+	background-position: 0 0;
+}
+.expandable > .icon {
+	background-image: url("../icon/iconArrows.svg");
+	background-position: 10px 0;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 3px;
+	left: 0;
+	display: block;
 }
 .field {
 	display: table-cell;
@@ -60,4 +74,5 @@
 }
 .line {
 	padding-left: 12px;
+	position: relative;
 }
