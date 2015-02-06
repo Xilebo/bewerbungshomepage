@@ -3,22 +3,16 @@
 	margin: 30px auto;
 	width: 16.7cm;
 }
-.closed {
+.expandable.closed {
 	background-image:url(../icon/icon_arrow_right.png);
-	background-size: 10px 10px;
-	background-position: 0px 5px;
-	background-repeat:no-repeat;
-}
-.open {
-	background-image:url(../icon/icon_arrow_down.png);
-	background-size: 10px 10px;
-	background-position: 0px 4px;
-	background-repeat:no-repeat;
-}
-.expandable
-{
 	height: 20px;
+}
+.expandable {
+	background-image:url(../icon/icon_arrow_down.png);
+	background-position: 0px 5px;
 	overflow:hidden;
+	background-size: 10px 10px;
+	background-repeat:no-repeat;
 }
 .field {
 	display: table-cell;

@@ -9,15 +9,13 @@ $(document).ready(function(){
 		defaultheight = $object.data('defaultheight');
 		isOpen = $object.data('isOpen');
 		if ( isOpen ) {
-			$object.toggleClass( "expandable", $time, "easeOutSine" );
+			$object.toggleClass( "closed", $time, "easeOutSine" );
 			$object.data('isOpen', false);
-			$object.addClass('closed');
 			$object.removeClass('open');
 		} else {
-			$object.toggleClass( "expandable", $time, "easeOutSine" );
+			$object.toggleClass( "closed", $time, "easeOutSine" );
 			$object.data('isOpen', true);
 			$object.addClass('open');
-			$object.removeClass('closed');
 		}
 	}
 
