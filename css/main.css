@@ -3,12 +3,15 @@
 	margin: 30px auto;
 	width: 16.7cm;
 }
+.expandable.closed:hover {
+	background-image:url(../icon/icon_arrow_blue_right.svg);
+}
 .expandable.closed {
-	background-image:url(../icon/icon_arrow_right.png);
+	background-image:url(../icon/icon_arrow_right.svg);
 	height: 20px;
 }
 .expandable {
-	background-image:url(../icon/icon_arrow_down.png);
+	background-image:url(../icon/icon_arrow_down.svg);
 	background-position: 0px 5px;
 	overflow:hidden;
 	background-size: 10px 10px;
