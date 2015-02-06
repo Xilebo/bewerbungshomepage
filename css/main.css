@@ -12,12 +12,12 @@
 .expandable.closed {
 	height: 20px;
 }
-.expandable.closed:hover > .icon{
+/* .expandable.closed:hover > .icon{
 	background-position: 0 10px;
 }
 .expandable:hover > .icon{
 	background-position: 10px 10px;
-}
+} */
 .expandable.closed > .icon {
 	background-position: 0 0;
 }
