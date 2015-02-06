@@ -1,0 +1,10 @@
+﻿<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+	<g>
+		<polygon filter="url(#blur)" id="tri4" stroke="#1e64ff" stroke-width="0.5" fill="#8eb1ff" points="2.87867965644,7.12132034356 7.12132034356,2.87867965644 7.12132034356,7.12132034356 " />
+	</g>
+	<defs>
+		<filter id="blur">
+			<feGaussianBlur stdDeviation="0.1" in="SourceGraphic"/>
+		</filter>
+	</defs>
+</svg>
