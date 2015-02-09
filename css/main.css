@@ -24,12 +24,14 @@
 .expandable > .icon {
 	background-image: url("../icon/iconArrows.svg");
 	background-position: 10px 0;
+}
+.icon {
+	display: table-cell;
 	width: 10px;
 	height: 10px;
 	position: absolute;
 	top: 3px;
 	left: 0;
-	display: block;
 }
 .field {
 	display: table-cell;
