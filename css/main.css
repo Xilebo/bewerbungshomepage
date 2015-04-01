@@ -17,11 +17,6 @@
 	background-repeat:no-repeat;
 	padding:0 0 0 12px;
 }
-.expandable
-{
-	height: 20px;
-	overflow:hidden;
-}
 .field {
 	display: inline-table;
 }
